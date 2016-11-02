@@ -22,6 +22,17 @@
 
 import CoreBluetooth
 
+
+extension CBCentralManager {
+    
+    internal var centralManagerState: CBCentralManagerState  {
+        get {
+            return CBCentralManagerState(rawValue: state.rawValue) ?? .Unknown
+        }
+    }
+}
+
+
 @objc internal class LegacyDFUPeripheral: NSObject, CBPeripheralDelegate, CBCentralManagerDelegate {
     /// Bluetooth Central Manager used to scan for the peripheral.
     private let centralManager:CBCentralManager
@@ -310,7 +321,7 @@ import CoreBluetooth
     // MARK: - Central Manager methods
     
     func centralManagerDidUpdateState(central: CBCentralManager) {
-        logCentralManagerState(central.state)
+        logCentralManagerState(central.centralManagerState)
     }
     
     func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {

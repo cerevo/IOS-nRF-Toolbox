@@ -323,7 +323,7 @@ internal class SecureDFUPeripheral: NSObject, CBPeripheralDelegate, CBCentralMan
     // MARK: - Central Manager methods
     
     func centralManagerDidUpdateState(central: CBCentralManager) {
-        logCentralManagerState(central.state)
+        logCentralManagerState(central.centralManagerState)
     }
     
     func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
@@ -481,4 +481,4 @@ internal class SecureDFUPeripheral: NSObject, CBPeripheralDelegate, CBCentralMan
         }
         logger.d("[Callback] Central Manager did update state to: \(stateAsString)")
     }
-}
+} 
